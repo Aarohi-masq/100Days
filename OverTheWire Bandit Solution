@@ -1,0 +1,124 @@
+Level 0:
+1.	Changed Network setting of the VM to Bridged adapter
+2.	Used ssh manual to know the syntax of the command if URI of the form ssh://bandit0@bandit.labs.overthewire.org:2220 
+3.	And entered ssh ssh://bandit0@bandit.labs.overthewire.org:2220
+4.	Password : bandit0
+Level 1:
+1.	By using pwd, I got know about the current directory 
+2.	Used ls to see contained directories and files.
+3.	cat readme, to see content of file
+4.	Here we get the password
+5.	Logout from bandit0
+6.	ssh ssh://bandit1@bandit.labs.overthewire.org:2220 to login in bandit1
+7.	password : boJ9jbbUNNfktd78OOpsqOltutMc3MY1 (which we got in the readme)
+Level 2:
+1.	By using pwd, I got know about the current directory 
+2.	Used ls to see contained directories and files.
+3.	By googling, how to read dash files, I got cat ./-<filename>
+4.	cat ./-, to see content of file
+5.	Here we get the password
+6.	Logout from bandit1
+7.	ssh ssh://bandit2@bandit.labs.overthewire.org:2220 to login in bandit2
+8.	password : CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9 (which we got in the -)
+
+Level 3:
+1.	By using pwd, I got know about the current directory 
+2.	Used ls to see contained directories and files.
+3.	cat “spaces in this filename”, to see content of file
+4.	Here we get the password
+5.	Logout from bandit2
+6.	ssh ssh://bandit3@bandit.labs.overthewire.org:2220 to login in bandit3
+7.	password : UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK (which we got in the spaces in this filename)
+
+Level 4:
+1.	By using pwd, I got know about the current directory 
+2.	Used ls to see contained directories and files.
+3.	cd inhere to change directory
+4.	find -type f -exec sh -c 'file -b {} | grep text &>/dev/null' \; -print to see human readable file only and we got ./.hidden named file
+5.	cat ./.hidden, to see content of file
+6.	Here we get the password
+7.	Logout from bandit3
+8.	ssh ssh://bandit4@bandit.labs.overthewire.org:2220 to login in bandit4
+9.	password : pIwrPrtPN36QITSp3EQaw936yaFoFgAB (which we got in the./.hidden)
+Level 5:
+1.	By using pwd, I got know about the current directory 
+2.	Used ls to see contained directories and files.
+3.	cd inhere to change directory
+4.	find -type f -exec sh -c 'file -b {} | grep text &>/dev/null' \; -print to see human readable file only and we got many files
+5.	cat ./-file0<n>, to see content of file
+6.	And we found only ./-file07 contains ASCII text
+7.	Here we get the password
+8.	Logout from bandit4
+9.	ssh ssh://bandit5@bandit.labs.overthewire.org:2220 to login in bandit5
+10.	password : koReBOKuIDDepwhWk7jZC0RTdopnAYKh (which we got in the ./-file07)
+
+Level 6:
+1.	By using pwd, I got know about the current directory 
+2.	Used ls to see contained directories and files.
+3.	cd inhere to change directory
+4.	find -size 1033c, to see file of 1033bytes and we got ./maybehere07/.file2 file.
+5.	cat ./maybehere07/.file2, to see content of file
+6.	Here we get the password
+7.	Logout from bandit5
+8.	ssh ssh://bandit6@bandit.labs.overthewire.org:2220 to login in bandit6
+9.	password : DXjZPULLxYr17uwoI01bNLQbtFemEgo7 (which we got in the ./maybehere07/.file2)
+Level 7:
+1.	By using pwd, I got know about the current directory 
+2.	Used ls to see contained directories and files.
+3.	find / -user bandit7 -group bandit6 -size 33c, to find file.
+4.	And got /var/lib/dpkg/info/bandit7.password 
+5.	cat /var/lib/dpkg/info/bandit7.password, to see content of file
+6.	Here we get the password
+7.	Logout from bandit6
+8.	ssh ssh://bandit7@bandit.labs.overthewire.org:2220 to login in bandit7
+9.	password : HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs (which we got in the /var/lib/dpkg/info/bandit7.password)
+Level 8:
+1.	By using pwd, I got know about the current directory 
+2.	Used ls to see contained directories and files.
+3.	cat data.txt | grep "millionth", to see content of file next to millionth
+4.	Here we get the password
+5.	Logout from bandit7
+6.	ssh ssh://bandit8@bandit.labs.overthewire.org:2220 to login in bandit8
+7.	password : cvX2JJa4CFALtqS87jk27qwqGhBM9plV (which we got in the /home/bandit7/data.txt
+
+Level 9:
+1.	By using pwd, I got know about the current directory 
+2.	Used ls to see contained directories and files.
+3.	cat /home/bandit7/data.txt, to see content of file
+4.	There is a lot content but we are looking for the only word occurred once.
+5.	sort data.txt | uniq -c | sort -nr, to get the occurrence in descending order.
+6.	Here we get the password in the bottom
+7.	Logout from bandit8
+8.	ssh ssh://bandit9@bandit.labs.overthewire.org:2220 to login in bandit9
+9.	password : UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR (which we got in the /home/bandit7/data.txt)
+Level 10:
+1.	By using pwd, I got know about the current directory 
+2.	Used ls to see contained directories and files.
+3.	cat /home/bandit7/data.txt, to see content of file
+4.	There is a lot content but we are looking for human readable string preceded by several =
+5.	strings data.txt, to get the strings human readable only.
+6.	There are many strings started with = but one of them is looking like the passwords we have found until now.
+7.	Check it logging in
+8.	Logout from bandit9
+9.	ssh ssh://bandit10@bandit.labs.overthewire.org:2220 to login in bandit10
+10.	password : truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk (which we got in the /home/bandit7/data.txt)
+Level 11:
+1.	By using pwd, I got know about the current directory 
+2.	Used ls to see contained directories and files.
+3.	cat data.txt, to see content of file
+4.	Here we get the password but encrypted in base64
+5.	Run echo VGhlIHBhc3N3b3JkIGlzIElGdWt3S0dzRlc4TU9xM0lSRnFyeEUxaHhUTkViVVBSCg== | base64 -d 
+6.	here we got “The password is IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR”
+7.	Logout from bandit10
+8.	ssh ssh://bandit11@bandit.labs.overthewire.org:2220 to login in bandit11
+9.	password : IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR (which we got in the /home/bandit7/data.txt))
+Level 12:
+1.	By using pwd, I got know about the current directory 
+2.	Used ls to see contained directories and files.
+3.	cat data.txt, to see content of file
+4.	Here we get the password but rotated by 13 positions
+5.	Run echo "Gur cnffjbeq vf 5Gr8L4qetPEsPk8htqjhRK8XSP6x2RHh" | tr '[A-Za-z]' '[N-ZA-Mn-za-m]'
+6.	here we got “The password is 5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu”
+7.	Logout from bandit11
+8.	ssh ssh://bandit12@bandit.labs.overthewire.org:2220 to login in bandit12
+9.	password : 5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu (which we got in the /home/bandit7/data.txt))
